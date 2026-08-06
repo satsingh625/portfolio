@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 4%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 42%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 4%;
+
+    --accent: 234 89% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 88%;
+    --ring: 234 89% 60%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 60%;
+
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 98%;
+
+    --accent: 234 89% 66%;
+    --accent-foreground: 0 0% 100%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 18%;
+    --ring: 234 89% 66%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: 'ss01', 'cv01', 'cv03';
+  }
+
+  ::selection {
+    @apply bg-accent/90 text-accent-foreground;
+  }
+
+  /* Visible keyboard focus, invisible for mouse users */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  /* Respect reduced motion preferences globally */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .container-tight {
+    @apply mx-auto w-full max-w-3xl px-6;
+  }
+
+  /* Thin, Vercel-style hairline separator */
+  .hairline {
+    @apply h-px w-full bg-border;
+  }
+
+  /* Subtle skeleton shimmer used by loading states */
+  .shimmer {
+    @apply relative overflow-hidden bg-muted;
+  }
+  .shimmer::after {
+    @apply absolute inset-0 -translate-x-full;
+    content: '';
+    background-image: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--foreground) / 0.05),
+      transparent
+    );
+    animation: shimmer 1.6s infinite;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  /* Ambient radial glow used behind the hero */
+  .glow {
+    background: radial-gradient(
+      60% 60% at 50% 0%,
+      hsl(var(--accent) / 0.14),
+      transparent 70%
+    );
+  }
+}
+
+/* Article typography for rendered blog markdown */
+.prose-portfolio {
+  @apply text-[1.05rem] leading-relaxed text-muted-foreground;
+}
+.prose-portfolio h2 {
+  @apply mt-10 mb-3 text-xl font-semibold text-foreground;
+}
+.prose-portfolio h3 {
+  @apply mt-8 mb-2 text-lg font-semibold text-foreground;
+}
+.prose-portfolio p {
+  @apply my-4 text-pretty;
+}
+.prose-portfolio ul {
+  @apply my-4 list-disc space-y-1.5 pl-5;
+}
+.prose-portfolio a {
+  @apply text-foreground underline underline-offset-4 decoration-border transition-colors hover:decoration-foreground;
+}
+.prose-portfolio code {
+  @apply rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em] text-foreground;
+}
+.prose-portfolio pre {
+  @apply my-6 overflow-x-auto rounded-lg border border-border bg-muted p-4;
+}
+.prose-portfolio pre code {
+  @apply bg-transparent p-0;
+}
+.prose-portfolio strong {
+  @apply font-semibold text-foreground;
+}

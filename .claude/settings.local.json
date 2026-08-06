@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(node --version)",
+      "PowerShell(npm --version)",
+      "PowerShell(npm install --no-audit --no-fund)",
+      "PowerShell(npm run typecheck)",
+      "PowerShell(npm run lint)",
+      "PowerShell(npm run dev)",
+      "PowerShell(try { \\(Invoke-WebRequest 'https://api.github.com/users/satyam-singh' -UseBasicParsing -TimeoutSec 30\\).StatusCode } catch { \"satyam-singh -> $\\([int]$_.Exception.Response.StatusCode\\)\" })",
+      "Skill(claude-api)",
+      "Skill(claude-api:*)"
+    ]
+  }
+}

@@ -44,7 +44,7 @@ export function Hero() {
           className="mb-6 flex items-center gap-2 font-mono text-sm text-muted-foreground"
         >
           <span className="inline-block h-1.5 w-1.5 rounded-full bg-green-500" />
-          Available for new work · {siteConfig.location}
+          Available to join immediately · {siteConfig.location}
         </motion.p>
 
         <motion.h1

@@ -15,7 +15,7 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://satyam-singh.vercel.app',
   email: 'imsats625@gmail.com',
   phone: '+91 90336 10625',
-  location: 'Ahmedabad, India',
+  location: 'Vadodara, India',
   // Availability is a strong signal for support roles — surfaced in the hero.
   availability: 'Open to support & observability roles · Immediate joiner',
   githubUsername: process.env.NEXT_PUBLIC_GITHUB_USERNAME ?? 'satyam-singh',
@@ -46,7 +46,7 @@ export const navItems: NavItem[] = [
 
 export const socialLinks: SocialLink[] = [
   { label: 'Email', href: 'mailto:imsats625@gmail.com', handle: 'imsats625@gmail.com' },
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/satyam-singh', handle: 'in/satyam-singh' },
-  { label: 'GitHub', href: 'https://github.com/satyam-singh', handle: '@satyam-singh' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/satyam-singh-13b096134/', handle: 'in/satyam-singh-13b096134' },
+  { label: 'GitHub', href: 'https://github.com/satsingh625', handle: '@satsingh625' },
   { label: 'Phone', href: 'tel:+919033610625', handle: '+91 90336 10625' },
 ];

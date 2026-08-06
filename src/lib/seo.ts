@@ -22,7 +22,10 @@ export function buildMetadata({
   const url = `${siteConfig.url}${path}`;
 
   return {
-    title: pageTitle,
+    // The root layout's title template already appends the site name, so pass
+    // the bare title through it. Without a title we bypass the template, since
+    // pageTitle is the full default.
+    title: title ?? { absolute: pageTitle },
     description: desc,
     alternates: { canonical: url },
     openGraph: {

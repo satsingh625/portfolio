@@ -7,7 +7,6 @@ import {
   Github,
   Home,
   Mail,
-  MessageSquare,
   Moon,
   Search,
   Sparkles,
@@ -57,18 +56,6 @@ export function CommandPalette() {
       { id: 'contact', label: 'Contact', group: 'Navigation', icon: Mail, perform: go('/contact') },
     ];
     const actions: Command[] = [
-      {
-        id: 'chat',
-        label: 'Ask the AI assistant',
-        hint: 'about my resume & projects',
-        group: 'Actions',
-        icon: MessageSquare,
-        keywords: 'chatbot ai question resume',
-        perform: () => {
-          window.dispatchEvent(new CustomEvent('open-chatbot'));
-          close();
-        },
-      },
       {
         id: 'resume',
         label: 'Download resume',

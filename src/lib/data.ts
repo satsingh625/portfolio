@@ -7,7 +7,7 @@ import type {
 
 /**
  * Portfolio content. This is intentionally plain data so it can be consumed by
- * pages, the command palette, SEO structured data, and the AI chatbot alike.
+ * pages, the command palette, and SEO structured data alike.
  */
 
 export const skillGroups: SkillGroup[] = [

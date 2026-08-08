@@ -9,7 +9,9 @@
       "PowerShell(npm run dev)",
       "PowerShell(try { \\(Invoke-WebRequest 'https://api.github.com/users/satyam-singh' -UseBasicParsing -TimeoutSec 30\\).StatusCode } catch { \"satyam-singh -> $\\([int]$_.Exception.Response.StatusCode\\)\" })",
       "Skill(claude-api)",
-      "Skill(claude-api:*)"
+      "Skill(claude-api:*)",
+      "Bash(npx tsc *)",
+      "Bash(echo \"EXIT: $?\")"
     ]
   }
 }

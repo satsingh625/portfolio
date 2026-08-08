@@ -12,14 +12,13 @@ A production-ready personal portfolio for **Satyam Singh — Technical Support &
 - **Resume download** (`/resume.pdf`)
 - **Blog** with a lightweight markdown renderer and per-post SEO
 - **Contact form** with client + server validation, honeypot spam trap, and optional email delivery
-- **AI chatbot** that answers recruiter questions about your resume, skills, and availability (streams from the Anthropic API)
 - **GitHub activity** component pulled live from the GitHub REST API (included but not mounted on the homepage by default — add it once your GitHub has public repos)
 - **Command palette** (`Ctrl`/`⌘` + `K`) for navigation and actions
 - **Interactive terminal** section with real commands (`help`, `projects`, `skills`, …)
 - **Smooth page transitions** and a tasteful first-load animation
 - **SEO**: per-page metadata, Open Graph + Twitter cards, `sitemap.xml`, `robots.txt`, web manifest, and JSON-LD structured data (Person, ItemList, BlogPosting)
 - **Accessibility**: skip link, visible keyboard focus, ARIA labels, semantic landmarks, and full `prefers-reduced-motion` support
-- **Performance**: `next/font`, static generation, edge chatbot route, security headers — built to score 95+ on Lighthouse
+- **Performance**: `next/font`, static generation, security headers — built to score 95+ on Lighthouse
 
 ## Tech stack
 
@@ -31,7 +30,6 @@ A production-ready personal portfolio for **Satyam Singh — Technical Support &
 | Animation   | Framer Motion                            |
 | Icons       | lucide-react                             |
 | Theme       | next-themes                              |
-| AI          | `@anthropic-ai/sdk` (streaming)          |
 | Deployment  | Vercel                                   |
 
 ## Getting started
@@ -74,7 +72,7 @@ Almost everything is data-driven. Edit these files:
 - `public/resume.pdf` — replace with your resume
 - `public/og.png`, `public/icon.png`, `public/favicon.svg` — replace the brand marks
 
-Because the pages, command palette, SEO structured data, and AI chatbot all read from the same data, changing it in one place updates the whole site.
+Because the pages, command palette, and SEO structured data all read from the same data, changing it in one place updates the whole site.
 
 ### 2. Environment variables
 
@@ -82,22 +80,17 @@ Copy `.env.example` to `.env.local` and set what you need. Everything degrades g
 
 | Variable                      | Required | Purpose                                                                 |
 | ----------------------------- | :------: | ----------------------------------------------------------------------- |
-| `ANTHROPIC_API_KEY`           |    –     | Enables the AI chatbot. Without it the widget shows a friendly notice.  |
 | `NEXT_PUBLIC_GITHUB_USERNAME` |    –     | Username for the GitHub activity section (defaults to config value).    |
 | `GITHUB_TOKEN`                |    –     | Optional PAT to raise GitHub API rate limits.                           |
 | `CONTACT_TO_EMAIL`            |    –     | Where contact submissions are sent.                                     |
 | `RESEND_API_KEY`              |    –     | Enables real email delivery via Resend. If unset, submissions are logged. |
 | `NEXT_PUBLIC_SITE_URL`        |    ✓\*   | Canonical URL for metadata, sitemap, and Open Graph. \*Set in production. |
 
-### 3. AI chatbot
-
-The `/api/chat` route runs on the edge and streams responses from Claude. It builds a knowledge base from `src/lib/data.ts` (see `src/lib/resume-context.ts`) and is instructed to answer only from that context. Set `ANTHROPIC_API_KEY` to turn it on — get one at <https://console.anthropic.com>.
-
-### 4. GitHub activity section (optional)
+### 3. GitHub activity section (optional)
 
 The `GitHubActivity` component (`src/components/sections/GitHubActivity.tsx`) fetches live stats from the GitHub API. It's intentionally left off the homepage and work page so the site never shows an empty section. Once your GitHub profile has public repositories worth showing, import it into `src/app/page.tsx` and set `NEXT_PUBLIC_GITHUB_USERNAME`.
 
-### 5. Contact form email (optional)
+### 4. Contact form email (optional)
 
 The `/api/contact` route validates input and, if `RESEND_API_KEY` is set, sends mail via [Resend](https://resend.com). Otherwise it logs submissions to the server console — handy for local development. Swap in any provider by editing that one route.
 
@@ -107,7 +100,6 @@ The `/api/contact` route validates input and, if `RESEND_API_KEY` is set, sends 
 src/
 ├── app/                      # App Router: pages, layouts, API routes, SEO files
 │   ├── api/
-│   │   ├── chat/route.ts     # streaming AI chatbot (edge)
 │   │   ├── contact/route.ts  # validated contact endpoint
 │   │   └── github/route.ts   # cached GitHub activity
 │   ├── blog/[slug]/page.tsx  # dynamic blog post (SSG)
@@ -119,7 +111,7 @@ src/
 ├── components/
 │   ├── layout/               # Navbar, Footer, PageTransition
 │   ├── sections/             # Hero, About, Skills, Experience, Projects, …
-│   ├── ui/                   # Button, Badge, Card, CommandPalette, Chatbot, …
+│   ├── ui/                   # Button, Badge, Card, CommandPalette, …
 │   └── providers/            # ThemeProvider
 ├── content/blog.ts           # blog data
 ├── hooks/                    # useMounted, useHotkey
@@ -135,7 +127,7 @@ Colors are defined once as HSL CSS variables in `globals.css` for both themes, t
 
 1. Push this repository to GitHub.
 2. Import it at <https://vercel.com/new>.
-3. Add your environment variables in **Project → Settings → Environment Variables** (at minimum `NEXT_PUBLIC_SITE_URL`; add `ANTHROPIC_API_KEY` for the chatbot).
+3. Add your environment variables in **Project → Settings → Environment Variables** (at minimum `NEXT_PUBLIC_SITE_URL`).
 4. Deploy. Vercel auto-detects Next.js — no extra build config needed. `vercel.json` adds security headers and cache rules.
 
 ### Deploy from the CLI
@@ -153,7 +145,7 @@ Any other Node host works too: run `npm run build` then `npm run start`.
 - All interactive elements are keyboard reachable with visible focus rings.
 - `prefers-reduced-motion` disables non-essential animation globally and in Framer Motion.
 - Images/fonts are optimized via `next/font` and Next's image pipeline.
-- The chatbot streams to keep time-to-first-token low; GitHub data is cached for an hour.
+- GitHub data is cached for an hour.
 - Run `npx lighthouse http://localhost:3000 --view` against a production build (`npm run build && npm run start`) to verify scores.
 
 ## License

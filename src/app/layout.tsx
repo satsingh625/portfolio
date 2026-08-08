@@ -8,7 +8,6 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { PageTransition } from '@/components/layout/PageTransition';
 import { CommandPalette } from '@/components/ui/CommandPalette';
-import { Chatbot } from '@/components/ui/Chatbot';
 import { LoadingScreen } from '@/components/ui/LoadingScreen';
 import { siteConfig } from '@/lib/site.config';
 import { personJsonLd } from '@/lib/seo';
@@ -104,7 +103,6 @@ export default function RootLayout({
           <Footer />
 
           <CommandPalette />
-          <Chatbot />
         </ThemeProvider>
       </body>
     </html>

@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowUpRight, MessageSquare } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { siteConfig, socialLinks } from '@/lib/site.config';
 
@@ -84,15 +84,6 @@ export function Hero() {
           <Button href="/projects">
             View projects
             <ArrowUpRight className="h-4 w-4" />
-          </Button>
-          <Button
-            variant="secondary"
-            onClick={() =>
-              window.dispatchEvent(new CustomEvent('open-chatbot'))
-            }
-          >
-            <MessageSquare className="h-4 w-4" />
-            Ask my AI
           </Button>
         </motion.div>
 

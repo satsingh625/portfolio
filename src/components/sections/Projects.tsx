@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Badge } from '@/components/ui/Badge';
 import { projects } from '@/lib/data';
+import { cn } from '@/lib/utils';
 import type { Project } from '@/types';
 
 export function Projects({
@@ -71,14 +72,20 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         </span>
       </div>
 
-      <p className="flex-1 text-sm text-muted-foreground text-pretty">
-        {project.description}
-      </p>
+      {/* Case-study structure: what was wrong, what I did, what changed. */}
+      <dl className="flex-1 space-y-4">
+        <CaseStudyStep label="Problem" value={project.problem} />
+        <CaseStudyStep label="Approach" value={project.approach} />
+        <CaseStudyStep label="Outcome" value={project.outcome} accent />
+      </dl>
 
-      <div className="mt-5 flex flex-wrap gap-1.5">
-        {project.tags.map((t) => (
-          <Badge key={t}>{t}</Badge>
-        ))}
+      <div className="mt-6 border-t border-border pt-4">
+        <h4 className="sr-only">Tools &amp; stack</h4>
+        <div className="flex flex-wrap gap-1.5">
+          {project.tags.map((t) => (
+            <Badge key={t}>{t}</Badge>
+          ))}
+        </div>
       </div>
 
       {(project.github || project.demo) && (
@@ -108,5 +115,32 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         </div>
       )}
     </motion.article>
+  );
+}
+
+/** One labelled step of a project case study. */
+function CaseStudyStep({
+  label,
+  value,
+  accent = false,
+}: {
+  label: string;
+  value: string;
+  accent?: boolean;
+}) {
+  return (
+    <div>
+      <dt className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted-foreground">
+        {label}
+      </dt>
+      <dd
+        className={cn(
+          'mt-1.5 text-sm text-pretty',
+          accent ? 'text-foreground' : 'text-muted-foreground',
+        )}
+      >
+        {value}
+      </dd>
+    </div>
   );
 }

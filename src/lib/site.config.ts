@@ -7,6 +7,8 @@ import type { NavItem, SocialLink } from '@/types';
 export const siteConfig = {
   name: 'Satyam Singh',
   role: 'Technical Support Engineer',
+  /** Specialisations shown directly beneath the role in the hero. */
+  specialisms: ['Observability', 'Production Support', 'Incident Management'],
   tagline:
     'I keep production platforms healthy — log analysis, monitoring dashboards, and clean escalations across 24/7 support environments.',
   description:
@@ -16,8 +18,10 @@ export const siteConfig = {
   email: 'imsats625@gmail.com',
   phone: '+91 90336 10625',
   location: 'Vadodara, India',
-  // Availability is a strong signal for support roles — surfaced in the hero.
-  availability: 'Open to support & observability roles · Immediate joiner',
+  // Availability is a real signal for support roles, but it stays secondary to
+  // the job title in the hero — see Hero.tsx.
+  availability: 'Available immediately',
+  availabilityLong: 'Open to support & observability roles · Immediate joiner',
   githubUsername: process.env.NEXT_PUBLIC_GITHUB_USERNAME ?? 'satyam-singh',
   resumePath: '/resume.pdf',
   ogImage: '/og.png',
@@ -44,9 +48,47 @@ export const navItems: NavItem[] = [
   { label: 'Contact', href: '/contact' },
 ];
 
+/**
+ * Socials are declared individually so components can reference a specific
+ * channel (the hero and closing CTA lead with LinkedIn) without re-typing URLs
+ * or doing fragile lookups by label.
+ */
+export const social = {
+  email: {
+    label: 'Email',
+    href: 'mailto:imsats625@gmail.com',
+    handle: 'imsats625@gmail.com',
+  },
+  linkedin: {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/satyam-singh-13b096134/',
+    handle: 'in/satyam-singh-13b096134',
+  },
+  github: {
+    label: 'GitHub',
+    href: 'https://github.com/satsingh625',
+    handle: '@satsingh625',
+  },
+  phone: {
+    label: 'Phone',
+    href: 'tel:+919033610625',
+    handle: '+91 90336 10625',
+  },
+} satisfies Record<string, SocialLink>;
+
 export const socialLinks: SocialLink[] = [
-  { label: 'Email', href: 'mailto:imsats625@gmail.com', handle: 'imsats625@gmail.com' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/satyam-singh-13b096134/', handle: 'in/satyam-singh-13b096134' },
-  { label: 'GitHub', href: 'https://github.com/satsingh625', handle: '@satsingh625' },
-  { label: 'Phone', href: 'tel:+919033610625', handle: '+91 90336 10625' },
+  social.email,
+  social.linkedin,
+  social.github,
+  social.phone,
+];
+
+/**
+ * Recruiter-facing order: LinkedIn first while actively job searching, then
+ * GitHub, then email. Phone is intentionally left to the contact page.
+ */
+export const primarySocials: SocialLink[] = [
+  social.linkedin,
+  social.github,
+  social.email,
 ];

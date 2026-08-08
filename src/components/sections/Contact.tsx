@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { Check, Loader2, Send } from 'lucide-react';
 import { useState } from 'react';
 import { SectionHeading } from '@/components/ui/SectionHeading';
+import { ResumeButton } from '@/components/ui/ResumeButton';
+import { SocialButtons } from '@/components/ui/SocialButtons';
 import { socialLinks } from '@/lib/site.config';
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
@@ -58,24 +60,35 @@ export function Contact() {
   return (
     <section className="container py-24">
       <SectionHeading
-        eyebrow="Contact"
-        title="Let's build something"
-        description="Have a role, a project, or just a question? Drop me a line and I'll get back to you."
+        eyebrow="Let's connect"
+        title="Let's solve production problems together."
+        description="Currently exploring Technical Support, Production Support and Observability opportunities. Have a role or a question? Drop me a line and I'll get back to you."
       />
 
       <div className="grid gap-10 md:grid-cols-5">
         <div className="md:col-span-2">
-          <p className="text-muted-foreground text-pretty">
-            The fastest way to reach me is email. I’m also active on the
-            platforms below.
+          <SocialButtons />
+
+          <div className="mt-4">
+            <ResumeButton variant="secondary" className="w-full sm:w-auto" />
+          </div>
+
+          <p className="mt-8 text-sm text-muted-foreground text-pretty">
+            The fastest way to reach me is email or LinkedIn. Every channel
+            below is checked daily.
           </p>
-          <ul className="mt-6 space-y-3">
-            {socialLinks.map((s) => (
+          <ul className="mt-5 space-y-3">
+            {socialLinks.map((s) => {
+              // mailto:/tel: must stay in the same tab to hand off to the OS.
+              const inPlace =
+                s.href.startsWith('mailto:') || s.href.startsWith('tel:');
+              return (
               <li key={s.label}>
                 <a
                   href={s.href}
-                  target="_blank"
-                  rel="noreferrer"
+                  {...(inPlace
+                    ? {}
+                    : { target: '_blank', rel: 'noreferrer' })}
                   className="group flex items-center justify-between border-b border-border py-2 text-sm"
                 >
                   <span className="text-muted-foreground">{s.label}</span>
@@ -84,7 +97,8 @@ export function Contact() {
                   </span>
                 </a>
               </li>
-            ))}
+              );
+            })}
           </ul>
         </div>
 

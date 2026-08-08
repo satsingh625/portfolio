@@ -29,12 +29,31 @@ export interface Project {
   slug: string;
   title: string;
   description: string;
-  longDescription: string;
+  /** Case-study breakdown: what was wrong, what I did, what changed. */
+  problem: string;
+  approach: string;
+  outcome: string;
   tags: string[];
   github?: string;
   demo?: string;
   featured: boolean;
   year: number;
+}
+
+/** Non-employment gap rendered alongside the experience timeline. */
+export interface CareerTransition {
+  label: string;
+  start: string;
+  end: string;
+  summary: string;
+  focus: string[];
+}
+
+export interface ImpactMetric {
+  value: string;
+  label: string;
+  /** Where the number comes from, so it stays auditable. */
+  detail: string;
 }
 
 export interface EducationItem {
@@ -72,9 +91,4 @@ export interface GitHubActivity {
   followers: number;
   topRepos: GitHubRepo[];
   contributionsLastYear: number | null;
-}
-
-export interface ChatMessage {
-  role: 'user' | 'assistant';
-  content: string;
 }

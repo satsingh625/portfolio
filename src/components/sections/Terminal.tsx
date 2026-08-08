@@ -4,7 +4,14 @@ import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { siteConfig } from '@/lib/site.config';
-import { education, experience, projects, skillGroups } from '@/lib/data';
+import {
+  careerTransition,
+  education,
+  experience,
+  projects,
+  skillGroups,
+  targetRoles,
+} from '@/lib/data';
 import { socialLinks } from '@/lib/site.config';
 
 interface Line {
@@ -33,10 +40,11 @@ export function Terminal() {
       [
         'Available commands:',
         '  about        Who I am',
+        '  status       Current availability & target roles',
         '  skills       Languages & tools',
         '  projects     Selected work',
         '  experience   Work history',
-        '  education     Degrees',
+        '  education    Degrees',
         '  contact      How to reach me',
         '  resume       Download my resume',
         '  social       Links',
@@ -45,8 +53,17 @@ export function Terminal() {
     about: () =>
       `${siteConfig.name} — ${siteConfig.role} based in ${siteConfig.location}.\n${siteConfig.tagline}`,
     whoami: () => siteConfig.name,
+    status: () =>
+      [
+        `${siteConfig.availability} · ${siteConfig.location}`,
+        '',
+        careerTransition.summary,
+        '',
+        'Targeting:',
+        ...targetRoles.map((r) => `  • ${r}`),
+      ].join('\n'),
     ls: () =>
-      'about  skills  projects  experience  education  contact  resume  social',
+      'about  status  skills  projects  experience  education  contact  resume  social',
     skills: () =>
       skillGroups
         .map((g) => `${g.category.padEnd(14)} ${g.items.join(', ')}`)
@@ -142,7 +159,7 @@ export function Terminal() {
       <SectionHeading
         eyebrow="Terminal"
         title="Prefer a command line?"
-        description="This one is real — try help, projects, or skills."
+        description="This one is real — try help, status, or projects."
       />
 
       <motion.div

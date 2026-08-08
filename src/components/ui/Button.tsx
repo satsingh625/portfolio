@@ -27,12 +27,17 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: Size;
   href?: string;
   external?: boolean;
+  /**
+   * Filename to save as. Only meaningful with `external` + a same-origin file
+   * (e.g. the resume PDF); browsers ignore it cross-origin.
+   */
+  download?: string;
   children: ReactNode;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { variant = 'primary', size = 'md', href, external, className, children, ...props },
+    { variant = 'primary', size = 'md', href, external, download, className, children, ...props },
     ref,
   ) => {
     const classes = cn(base, variants[variant], sizes[size], className);
@@ -44,6 +49,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             href={href}
             target="_blank"
             rel="noreferrer"
+            download={download}
             className={classes}
           >
             {children}

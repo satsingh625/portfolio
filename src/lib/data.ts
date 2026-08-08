@@ -1,6 +1,8 @@
 import type {
+  CareerTransition,
   EducationItem,
   ExperienceItem,
+  ImpactMetric,
   Project,
   SkillGroup,
 } from '@/types';
@@ -133,8 +135,12 @@ export const projects: Project[] = [
     title: 'Cross-Stack Observability Dashboards',
     description:
       'Splunk, Dynatrace and Datadog dashboards that surfaced service degradation before customers noticed.',
-    longDescription:
-      'Designed and maintained monitoring across three observability stacks — Splunk (SPL, dashboards), Dynatrace (DPL patterns) and Datadog (monitors and alerts). The dashboards correlated application logs with service metrics so on-call could catch degradation early, triage faster, and escalate with reproducible evidence instead of guesswork.',
+    problem:
+      'On-call needed to catch service degradation before customers felt it — with signals spread across three separate observability stacks.',
+    approach:
+      'Designed and maintained dashboards in Splunk (SPL), Dynatrace (DPL patterns) and Datadog (monitors and alerts), correlating application logs against service metrics in one view.',
+    outcome:
+      'Degradation was caught early, triage got faster, and escalations carried reproducible evidence instead of guesswork.',
     tags: ['Splunk', 'Dynatrace', 'Datadog', 'Monitoring'],
     featured: true,
     year: 2025,
@@ -144,8 +150,12 @@ export const projects: Project[] = [
     title: 'Tier-2 Triage & Resolution Playbooks',
     description:
       'Knowledge-base runbooks that gave newer engineers a repeatable path and cut time-to-triage on recurring issues.',
-    longDescription:
-      'Authored solution-based resolution and triage guides in the team knowledge base, turning hard-won incident knowledge into a repeatable path for recurring tickets. New engineers ramped faster and time-to-triage on similar cases dropped, freeing senior engineers for genuinely novel problems.',
+    problem:
+      'Recurring tickets were re-investigated from scratch, and newer engineers had no documented path through them.',
+    approach:
+      'Authored solution-based resolution and triage guides in the team knowledge base, turning hard-won incident knowledge into a repeatable procedure.',
+    outcome:
+      'New engineers ramped faster, time-to-triage on similar cases dropped, and senior engineers were freed for genuinely novel problems.',
     tags: ['Knowledge Base', 'Incident Management', 'Mentoring'],
     featured: true,
     year: 2025,
@@ -155,8 +165,12 @@ export const projects: Project[] = [
     title: 'Linux Health-Checks & Log Automation',
     description:
       'Bash scripts for host health checks and log automation on Linux, backing faster incident investigation.',
-    longDescription:
-      'Administered Linux hosts and wrote Bash scripts to automate health checks and log collection, alongside Docker-based services. During incidents these scripts trimmed the manual steps between "alert fired" and "root cause found", so investigations started from evidence rather than from scratch.',
+    problem:
+      'Too many manual steps sat between an alert firing and a root cause being found, so investigations started from scratch.',
+    approach:
+      'Administered Linux hosts and wrote Bash scripts to automate health checks and log collection, alongside Docker-based services.',
+    outcome:
+      'Investigations began from collected evidence rather than a blank terminal, trimming the path from "alert fired" to "root cause found".',
     tags: ['Linux', 'Bash', 'Docker', 'Automation'],
     featured: true,
     year: 2025,
@@ -166,8 +180,12 @@ export const projects: Project[] = [
     title: 'Billing & Third-Party API Diagnostics',
     description:
       'Root-caused third-party API integration failures behind billing and reporting gaps in a US healthcare platform.',
-    longDescription:
-      'On a 24/7 US healthcare SaaS, diagnosed integration failures behind billing and reporting gaps by analysing HTTP request/response flows and application logs. Packaged reproducible findings for engineering and kept both technical contacts and non-technical stakeholders informed through to resolution.',
+    problem:
+      'Billing and reporting gaps on a 24/7 US healthcare SaaS traced back to third-party API integrations failing silently.',
+    approach:
+      'Analysed HTTP request/response flows and application logs to isolate the failing integrations and reproduce them on demand.',
+    outcome:
+      'Findings were packaged for engineering, and both technical contacts and non-technical stakeholders stayed informed through to resolution.',
     tags: ['REST APIs', 'Log analysis', 'US Healthcare'],
     featured: false,
     year: 2024,
@@ -177,13 +195,86 @@ export const projects: Project[] = [
     title: 'SQL Data-Integrity & Audit Reporting',
     description:
       'Multi-table SQL JOINs, stored procedures and DML to trace discrepancies and generate audit-ready reports.',
-    longDescription:
-      'Used multi-table JOINs, stored procedures and DML operations to trace data discrepancies, verify record accuracy and produce audit-ready reports during compliance reviews — the kind of careful, evidence-first data work that billing and clinical teams could trust.',
+    problem:
+      'Compliance reviews required tracing data discrepancies and proving record accuracy across multiple tables.',
+    approach:
+      'Ran multi-table JOINs, stored procedures and DML operations to follow the data, verify records and reconcile the gaps.',
+    outcome:
+      'Produced audit-ready reports that billing and clinical teams could rely on during compliance review.',
     tags: ['SQL', 'Data Integrity', 'Compliance'],
     featured: false,
     year: 2024,
   },
 ];
+
+/**
+ * "Impact at a glance" — every figure here is already stated elsewhere in this
+ * file (experience highlights, summaries) or in the resume. `detail` records the
+ * source so nothing drifts into an unbacked claim.
+ */
+export const impactMetrics: ImpactMetric[] = [
+  {
+    value: '4+',
+    label: 'Years in production support',
+    detail: 'Across US healthcare SaaS and enterprise observability tooling',
+  },
+  {
+    value: '68%',
+    label: 'Tier-2 cases resolved without further escalation',
+    detail: 'Log review, SQL queries and REST API diagnostics at Meditab',
+  },
+  {
+    value: '24/7',
+    label: 'Production support coverage',
+    detail: 'Follow-the-sun rotations spanning US time zones',
+  },
+  {
+    value: '3',
+    label: 'Observability stacks in daily use',
+    detail: 'Splunk, Dynatrace and Datadog',
+  },
+];
+
+/**
+ * The support lifecycle this portfolio is organised around — used as a compact
+ * strip that frames the work without needing decorative graphics.
+ */
+export const supportLifecycle: string[] = [
+  'Troubleshoot',
+  'Investigate',
+  'Root cause',
+  'Communicate',
+  'Resolve',
+  'Prevent recurrence',
+];
+
+/** Roles actively being targeted — kept short so it reads as focus, not keywords. */
+export const targetRoles: string[] = [
+  'Technical Support Engineer',
+  'Production Support Engineer',
+  'Application Support Engineer',
+  'Observability Engineer',
+  'L2 / L3 Technical Support',
+  'Product Consultant',
+];
+
+/**
+ * Current career transition. Deliberately kept out of `experience` so it never
+ * reads as a job — the timeline renders it with its own subdued treatment, and
+ * SEO/structured data continue to ignore it.
+ */
+export const careerTransition: CareerTransition = {
+  label: 'Career Transition',
+  start: 'Jul 2026',
+  end: 'Present',
+  summary:
+    'Taking a focused career transition period to upgrade technical skills, work on practical projects, and pursue the right next opportunity.',
+  focus: [
+    'Deepening observability and production-support tooling',
+    'Building practical projects end to end',
+    'Staying current with modern operational practice',
+  ],
+};
 
 export const education: EducationItem[] = [
   {

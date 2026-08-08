@@ -1,22 +1,26 @@
 'use client';
 
+import { Fragment } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
-import { siteConfig, socialLinks } from '@/lib/site.config';
+import { ResumeButton } from '@/components/ui/ResumeButton';
+import { SocialButtons } from '@/components/ui/SocialButtons';
+import { siteConfig } from '@/lib/site.config';
 
 export function Hero() {
   const reduce = useReducedMotion();
-  const name = siteConfig.name;
+  const role = siteConfig.role;
+  const words = role.split(' ');
 
   const container = {
     hidden: {},
     show: {
-      transition: { staggerChildren: reduce ? 0 : 0.03, delayChildren: 0.1 },
+      transition: { staggerChildren: reduce ? 0 : 0.06, delayChildren: 0.1 },
     },
   };
-  const letter = {
-    hidden: { opacity: 0, y: reduce ? 0 : '0.6em' },
+  // Staggered per word rather than per character: the role is long enough that
+  // per-character inline-blocks would let it wrap mid-word on narrow screens.
+  const word = {
+    hidden: { opacity: 0, y: reduce ? 0 : '0.5em' },
     show: {
       opacity: 1,
       y: 0,
@@ -40,70 +44,73 @@ export function Hero() {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="mb-6 flex items-center gap-2 font-mono text-sm text-muted-foreground"
+          transition={{ duration: 0.5 }}
+          className="font-mono text-sm text-muted-foreground"
         >
-          <span className="inline-block h-1.5 w-1.5 rounded-full bg-green-500" />
-          Available to join immediately · {siteConfig.location}
+          {siteConfig.name}
         </motion.p>
 
+        {/* Professional identity leads: the role is the largest element here. */}
         <motion.h1
           variants={container}
           initial="hidden"
           animate="show"
-          className="text-display font-semibold text-balance"
-          aria-label={name}
+          className="mt-4 max-w-4xl text-hero font-semibold text-balance"
+          aria-label={role}
         >
-          {name.split('').map((char, i) => (
-            <motion.span
-              key={i}
-              variants={letter}
-              className="inline-block"
-              aria-hidden
-            >
-              {char === ' ' ? '\u00A0' : char}
-            </motion.span>
+          {words.map((w, i) => (
+            // The separating space is a sibling text node, not inside the
+            // inline-block: CSS trims trailing whitespace inside one, which
+            // would run the words together.
+            <Fragment key={i}>
+              <motion.span variants={word} className="inline-block" aria-hidden>
+                {w}
+              </motion.span>
+              {i < words.length - 1 ? ' ' : null}
+            </Fragment>
           ))}
         </motion.h1>
 
         <motion.p
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.35 }}
+          className="mt-5 max-w-2xl font-mono text-xs uppercase tracking-[0.1em] text-accent sm:text-sm sm:tracking-[0.16em]"
+        >
+          {siteConfig.specialisms.join(' · ')}
+        </motion.p>
+
+        <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-6 max-w-xl text-lg text-muted-foreground text-pretty sm:text-xl"
+          transition={{ duration: 0.6, delay: 0.45 }}
+          className="mt-7 max-w-2xl text-lg text-muted-foreground text-pretty"
         >
           {siteConfig.tagline}
+        </motion.p>
+
+        {/* Secondary by design: small, muted, and below the summary. */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.55 }}
+          className="mt-6 flex items-center gap-2 font-mono text-xs text-muted-foreground"
+        >
+          <span
+            aria-hidden
+            className="inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-green-500"
+          />
+          {siteConfig.availability} · {siteConfig.location}
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-10 flex flex-wrap items-center gap-3"
+          transition={{ duration: 0.6, delay: 0.65 }}
+          className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"
         >
-          <Button href="/projects">
-            View projects
-            <ArrowUpRight className="h-4 w-4" />
-          </Button>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="mt-14 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-xs text-muted-foreground"
-        >
-          {socialLinks.map((s) => (
-            <a
-              key={s.label}
-              href={s.href}
-              target="_blank"
-              rel="noreferrer"
-              className="transition-colors hover:text-foreground"
-            >
-              {s.label}
-            </a>
-          ))}
+          <ResumeButton className="w-full sm:w-auto" />
+          <SocialButtons />
         </motion.div>
       </div>
     </section>

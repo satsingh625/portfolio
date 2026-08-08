@@ -15,11 +15,12 @@ export function About({ withHeading = true }: { withHeading?: boolean }) {
           ))}
         </div>
         <aside className="space-y-6 md:pl-6">
+          <Detail label="Status" value="Career transition · actively searching" />
           <Detail label="Open to" value="Support & observability roles" />
           <Detail label="Focus" value="Monitoring, log analysis & escalation" />
           <Detail label="Based in" value={siteConfig.location} />
           <Detail label="Experience" value="4+ years" />
-          <Detail label="Notice" value="Immediate joiner" />
+          <Detail label="Notice" value={siteConfig.availability} />
         </aside>
       </div>
     </section>

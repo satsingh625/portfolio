@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
-import { siteConfig } from './site.config';
+import { siteConfig, social } from './site.config';
 import { projects } from './data';
-import { experience } from './data';
 
 /** Build page-level metadata that inherits sensible defaults from siteConfig. */
 export function buildMetadata({
@@ -59,14 +58,10 @@ export function personJsonLd() {
       '@type': 'PostalAddress',
       addressLocality: siteConfig.location,
     },
-    sameAs: [
-      `https://github.com/${siteConfig.githubUsername}`,
-      'https://linkedin.com/in/satyam-singh',
-    ],
-    worksFor: {
-      '@type': 'Organization',
-      name: experience[0]?.company ?? '',
-    },
+    // Real profile URLs only — these come from site.config, not guessed handles.
+    sameAs: [social.github.href, social.linkedin.href],
+    // No `worksFor`: the most recent role ended Jun 2026, and claiming current
+    // employment there would be inaccurate. Re-add it on the next role.
     knowsAbout: siteConfig.keywords,
   };
 }

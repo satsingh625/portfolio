@@ -40,6 +40,9 @@ const config: Config = {
       },
       fontSize: {
         'display': ['clamp(2.75rem, 8vw, 6.5rem)', { lineHeight: '0.95', letterSpacing: '-0.04em' }],
+        // Hero role headline: dominant, but sized to stay readable across two
+        // or three words per line on narrow screens.
+        'hero': ['clamp(2.25rem, 6vw, 4.5rem)', { lineHeight: '1.0', letterSpacing: '-0.035em' }],
         'title': ['clamp(1.75rem, 4vw, 3rem)', { lineHeight: '1.05', letterSpacing: '-0.03em' }],
       },
       borderRadius: {

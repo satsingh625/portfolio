@@ -112,11 +112,12 @@
   .text-pretty {
     text-wrap: pretty;
   }
-  /* Ambient radial glow used behind the hero */
+  /* Ambient radial glow behind the hero. Kept deliberately faint — the grid
+     should read as the technical texture, not the gradient. */
   .glow {
     background: radial-gradient(
       60% 60% at 50% 0%,
-      hsl(var(--accent) / 0.14),
+      hsl(var(--accent) / 0.1),
       transparent 70%
     );
   }

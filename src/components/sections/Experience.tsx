@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Badge } from '@/components/ui/Badge';
-import { experience } from '@/lib/data';
+import { careerTransition, experience } from '@/lib/data';
 
 export function Experience() {
   return (
@@ -15,6 +15,33 @@ export function Experience() {
       />
 
       <ol className="relative border-l border-border">
+        {/* Current transition period. Rendered ahead of the roles so the
+            timeline reads continuously, but visually quieter than a job: hollow
+            node, muted heading, no stack badges. */}
+        <motion.li
+          initial={{ opacity: 0, x: -8 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.5 }}
+          className="relative ml-6 pb-12"
+        >
+          <span
+            aria-hidden
+            className="absolute -left-[1.85rem] top-1.5 h-3 w-3 rounded-full border-2 border-border bg-background"
+          />
+          <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+            <h3 className="font-mono text-sm uppercase tracking-[0.14em] text-muted-foreground">
+              {careerTransition.label}
+            </h3>
+            <p className="font-mono text-xs text-muted-foreground">
+              {careerTransition.start} — {careerTransition.end}
+            </p>
+          </div>
+          <p className="mt-2.5 max-w-2xl text-sm text-muted-foreground text-pretty">
+            {careerTransition.summary}
+          </p>
+        </motion.li>
+
         {experience.map((job, i) => (
           <motion.li
             key={`${job.company}-${job.start}`}

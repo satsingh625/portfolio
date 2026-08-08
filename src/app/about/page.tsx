@@ -1,9 +1,11 @@
 import { About } from '@/components/sections/About';
+import { CurrentStatus } from '@/components/sections/CurrentStatus';
 import { Skills } from '@/components/sections/Skills';
 import { Experience } from '@/components/sections/Experience';
 import { Education } from '@/components/sections/Education';
-import { Button } from '@/components/ui/Button';
-import { FileDown } from 'lucide-react';
+import { ClosingCTA } from '@/components/sections/ClosingCTA';
+import { ResumeButton } from '@/components/ui/ResumeButton';
+import { SocialButtons } from '@/components/ui/SocialButtons';
 import { siteConfig } from '@/lib/site.config';
 import { buildMetadata } from '@/lib/seo';
 
@@ -23,20 +25,21 @@ export default function AboutPage() {
         <h1 className="mt-3 max-w-2xl text-title font-semibold text-balance">
           Support engineer who turns noisy incidents into clean, evidenced resolutions.
         </h1>
-        <div className="mt-6">
-          <Button href={siteConfig.resumePath} external variant="secondary">
-            <FileDown className="h-4 w-4" />
-            Download resume
-          </Button>
+        <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+          <ResumeButton className="w-full sm:w-auto" />
+          <SocialButtons />
         </div>
       </div>
       <About withHeading={false} />
       <div className="hairline" />
-      <Skills />
+      <CurrentStatus />
       <div className="hairline" />
       <Experience />
       <div className="hairline" />
+      <Skills />
+      <div className="hairline" />
       <Education />
+      <ClosingCTA />
     </>
   );
 }

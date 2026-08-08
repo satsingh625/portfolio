@@ -32,7 +32,7 @@ export default function AboutPage() {
       </div>
       <About withHeading={false} />
       <div className="hairline" />
-      <CurrentStatus />
+      <CurrentStatus showAvailability />
       <div className="hairline" />
       <Experience />
       <div className="hairline" />

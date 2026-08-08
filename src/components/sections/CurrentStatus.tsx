@@ -11,7 +11,12 @@ import { siteConfig } from '@/lib/site.config';
  * a productive transition period — the point is to answer "what are you looking
  * for and when can you start?" before a recruiter has to ask.
  */
-export function CurrentStatus() {
+export function CurrentStatus({
+  showAvailability = false,
+}: {
+  /** Set on pages without the hero, which is where the canonical mention lives. */
+  showAvailability?: boolean;
+}) {
   return (
     <section className="container py-24" aria-labelledby="status-heading">
       <div className="grid gap-12 lg:grid-cols-5">
@@ -51,13 +56,17 @@ export function CurrentStatus() {
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
             <ResumeButton variant="secondary" className="w-full sm:w-auto" />
-            <p className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
-              <span
-                aria-hidden
-                className="inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-green-500"
-              />
-              {siteConfig.availability}
-            </p>
+            {/* Only shown where the hero isn't — the hero already carries this
+                signal, and repeating it on one page dilutes it. */}
+            {showAvailability && (
+              <p className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
+                <span
+                  aria-hidden
+                  className="inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-green-500"
+                />
+                {siteConfig.availability}
+              </p>
+            )}
           </div>
         </div>
 
@@ -82,10 +91,6 @@ export function CurrentStatus() {
               </li>
             ))}
           </ul>
-          <p className="mt-6 border-t border-border pt-4 text-xs text-muted-foreground text-pretty">
-            Open to follow-the-sun shift rotations, weekends and holiday
-            coverage for maintenance windows or major incidents.
-          </p>
         </motion.div>
       </div>
     </section>

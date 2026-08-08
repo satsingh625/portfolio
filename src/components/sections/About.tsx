@@ -20,7 +20,6 @@ export function About({ withHeading = true }: { withHeading?: boolean }) {
           <Detail label="Focus" value="Monitoring, log analysis & escalation" />
           <Detail label="Based in" value={siteConfig.location} />
           <Detail label="Experience" value="4+ years" />
-          <Detail label="Notice" value={siteConfig.availability} />
         </aside>
       </div>
     </section>

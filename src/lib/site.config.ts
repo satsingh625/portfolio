@@ -10,7 +10,7 @@ export const siteConfig = {
   /** Specialisations shown directly beneath the role in the hero. */
   specialisms: ['Observability', 'Production Support', 'Incident Management'],
   tagline:
-    'I keep production platforms healthy — log analysis, monitoring dashboards, and clean escalations across 24/7 support environments.',
+    '4+ years troubleshooting production platforms across healthcare SaaS and observability environments, with a focus on incident resolution, log analysis, monitoring, and clean technical escalations.',
   description:
     'Satyam Singh is a Technical Support & Observability Engineer with 4+ years across US healthcare SaaS and enterprise observability tooling — Splunk, Dynatrace, Datadog, Linux, SQL, and API troubleshooting.',
   // Falls back to a sensible default in dev; set NEXT_PUBLIC_SITE_URL in prod.
@@ -21,7 +21,6 @@ export const siteConfig = {
   // Availability is a real signal for support roles, but it stays secondary to
   // the job title in the hero — see Hero.tsx.
   availability: 'Available immediately',
-  availabilityLong: 'Open to support & observability roles · Immediate joiner',
   githubUsername: process.env.NEXT_PUBLIC_GITHUB_USERNAME ?? 'satyam-singh',
   resumePath: '/resume.pdf',
   ogImage: '/og.png',

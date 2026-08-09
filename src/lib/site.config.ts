@@ -14,7 +14,7 @@ export const siteConfig = {
   description:
     'Satyam Singh is a Technical Support & Observability Engineer with 4+ years across US healthcare SaaS and enterprise observability tooling — Splunk, Dynatrace, Datadog, Linux, SQL, and API troubleshooting.',
   // Falls back to a sensible default in dev; set NEXT_PUBLIC_SITE_URL in prod.
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://satyam-singh.vercel.app',
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://satyamsingh-tse.vercel.app',
   email: 'imsats625@gmail.com',
   phone: '+91 90336 10625',
   location: 'Vadodara, India',

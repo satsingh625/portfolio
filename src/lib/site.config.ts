@@ -23,6 +23,9 @@ export const siteConfig = {
   availability: 'Available immediately',
   githubUsername: process.env.NEXT_PUBLIC_GITHUB_USERNAME ?? 'satyam-singh',
   resumePath: '/resume.pdf',
+  // Google Search Console ownership token. Public by design — it is served as a
+  // meta tag. Removing it after verification can un-verify the property.
+  googleSiteVerification: 'r1l7DurxWhjpG7irGL1KnXL7ZwdgAwS5mq2mxsTcv_M',
   ogImage: '/og.png',
   keywords: [
     'technical support engineer',

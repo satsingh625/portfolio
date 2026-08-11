@@ -51,18 +51,35 @@ export function personJsonLd() {
     '@type': 'Person',
     name: siteConfig.name,
     url: siteConfig.url,
+    image: `${siteConfig.url}${siteConfig.ogImage}`,
     email: `mailto:${siteConfig.email}`,
     jobTitle: siteConfig.role,
     description: siteConfig.description,
     address: {
       '@type': 'PostalAddress',
-      addressLocality: siteConfig.location,
+      addressLocality: 'Vadodara',
+      addressRegion: 'Gujarat',
+      addressCountry: 'IN',
     },
+    alumniOf: { '@type': 'CollegeOrUniversity', name: 'Parul University' },
+    // Spelled out rather than reusing siteConfig.keywords: those are lowercase
+    // meta keywords, while knowsAbout reads as proper subject names.
+    knowsAbout: [
+      'Technical Support',
+      'Production Support',
+      'Observability',
+      'Splunk',
+      'Dynatrace',
+      'Datadog',
+      'Incident Management',
+      'Linux',
+      'SQL',
+      'REST API troubleshooting',
+    ],
     // Real profile URLs only — these come from site.config, not guessed handles.
-    sameAs: [social.github.href, social.linkedin.href],
+    sameAs: [social.linkedin.href, social.github.href],
     // No `worksFor`: the most recent role ended Jun 2026, and claiming current
     // employment there would be inaccurate. Re-add it on the next role.
-    knowsAbout: siteConfig.keywords,
   };
 }
 

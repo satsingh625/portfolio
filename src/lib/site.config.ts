@@ -21,6 +21,16 @@ export const siteConfig = {
   // Availability is a real signal for support roles, but it stays secondary to
   // the job title in the hero — see Hero.tsx.
   availability: 'Available immediately',
+  /**
+   * Relocation preferences. Recruiters filter hard on location, so this is
+   * stated explicitly rather than left to be inferred from `location`.
+   * `short` is the hero teaser; the other two carry the detail.
+   */
+  relocation: {
+    short: 'Open to relocation',
+    openTo: 'Anywhere in India · Open to international relocation',
+    workMode: 'Onsite, hybrid or remote',
+  },
   githubUsername: process.env.NEXT_PUBLIC_GITHUB_USERNAME ?? 'satyam-singh',
   resumePath: '/resume.pdf',
   // Google Search Console ownership token. Public by design — it is served as a

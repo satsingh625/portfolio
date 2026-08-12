@@ -61,6 +61,9 @@ export function Terminal() {
         '',
         'Targeting:',
         ...targetRoles.map((r) => `  • ${r}`),
+        '',
+        `Location:   ${siteConfig.relocation.openTo}`,
+        `Work mode:  ${siteConfig.relocation.workMode}`,
       ].join('\n'),
     ls: () =>
       'about  status  skills  projects  experience  education  contact  resume  social',

@@ -91,6 +91,30 @@ export function CurrentStatus({
               </li>
             ))}
           </ul>
+
+          {/* Location is the other filter recruiters apply first, so it sits
+              directly beneath the roles rather than in a separate section. */}
+          <dl className="mt-6 space-y-4 border-t border-border pt-5">
+            <div>
+              <dt className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted-foreground">
+                Location
+              </dt>
+              <dd className="mt-1.5 text-sm text-foreground text-pretty">
+                Based in {siteConfig.location}
+              </dd>
+              <dd className="mt-1 text-sm text-muted-foreground text-pretty">
+                {siteConfig.relocation.openTo}
+              </dd>
+            </div>
+            <div>
+              <dt className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-muted-foreground">
+                Work mode
+              </dt>
+              <dd className="mt-1.5 text-sm text-muted-foreground text-pretty">
+                {siteConfig.relocation.workMode}
+              </dd>
+            </div>
+          </dl>
         </motion.div>
       </div>
     </section>

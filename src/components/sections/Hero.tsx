@@ -100,7 +100,8 @@ export function Hero() {
             aria-hidden
             className="inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-green-500"
           />
-          {siteConfig.availability} · {siteConfig.location}
+          {siteConfig.availability} · {siteConfig.location} ·{' '}
+          {siteConfig.relocation.short}
         </motion.p>
 
         <motion.div

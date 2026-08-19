@@ -88,7 +88,14 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           // JSON-LD is trusted, generated from our own data.
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd()) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Satyam Singh",
+            "url": "https://satyamsingh-tse.vercel.app",
+            "jobTitle": "Technical Support Engineer",
+            "image": "https://satyamsingh-tse.vercel.app/og.png",
+    }) }}
         />
 
         <ThemeProvider>

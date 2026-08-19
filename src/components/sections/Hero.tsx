@@ -14,17 +14,29 @@ export function Hero() {
   const container = {
     hidden: {},
     show: {
-      transition: { staggerChildren: reduce ? 0 : 0.06, delayChildren: 0.1 },
+      transition: {
+        staggerChildren: reduce ? 0 : 0.06,
+        delayChildren: reduce ? 0 : 0.1,
+      },
     },
   };
   // Staggered per word rather than per character: the role is long enough that
   // per-character inline-blocks would let it wrap mid-word on narrow screens.
+  //
+  // `hidden` must NOT depend on `reduce`: it is the `initial` state, so it is
+  // serialised into the SSR'd HTML, where the motion preference is unknowable.
+  // Branching here made the style attribute disagree with the client on
+  // reduced-motion machines and broke hydration. The preference belongs in the
+  // transition below, which only ever runs after hydration.
   const word = {
-    hidden: { opacity: 0, y: reduce ? 0 : '0.5em' },
+    hidden: { opacity: 0, y: '0.5em' },
     show: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as const },
+      transition: {
+        duration: reduce ? 0 : 0.5,
+        ease: [0.16, 1, 0.3, 1] as const,
+      },
     },
   };
 

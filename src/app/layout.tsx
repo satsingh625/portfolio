@@ -11,6 +11,7 @@ import { CommandPalette } from '@/components/ui/CommandPalette';
 import { LoadingScreen } from '@/components/ui/LoadingScreen';
 import { siteConfig } from '@/lib/site.config';
 import { personJsonLd } from '@/lib/seo';
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -114,6 +115,7 @@ export default function RootLayout({
 
           <CommandPalette />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

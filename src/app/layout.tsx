@@ -3,6 +3,7 @@ import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
 import './globals.css';
 
+import { Analytics } from '@vercel/analytics/next';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
@@ -114,6 +115,7 @@ export default function RootLayout({
 
           <CommandPalette />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

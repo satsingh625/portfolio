@@ -12,6 +12,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@vercel/speed-insights": "^2.0.0",
     "framer-motion": "^11.11.0",
     "geist": "^1.7.2",
     "lucide-react": "^0.454.0",
